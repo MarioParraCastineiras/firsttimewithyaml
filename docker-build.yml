@@ -1,0 +1,16 @@
+name: Docker build
+on:
+  push:
+    tags:
+      - '*'
+# se hace un push a cualquier tag, se ejecuta el workflow
+
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout code # se clona el repositorio para tener acceso al Dockerfile y al código fuente
+        uses: actions/checkout@v4
+
+      - name: Build Docker image # se construye la imagen de Docker usando el Dockerfile presente en el repositorio
+        run: docker build .
